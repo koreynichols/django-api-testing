@@ -4,9 +4,10 @@ import requests
 import json
 
 def index(request):
-    api_request = requests.get("https://korey-movie-rater-backend.herokuapp.com/api/ratings/")
+    api_request = requests.get("https://korey-movie-rater-backend.herokuapp.com/api/ratings/", 
+                    headers = {'Authorization': TOKEN_PLACEHOLDER})
     try:
         api = json.loads(api_request.content)
     except Exception as e:
         api = "Error, data not loading"
-    return HttpResponse(api['detail'])
+    return HttpResponse(api)
